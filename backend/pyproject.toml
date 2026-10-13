@@ -1,0 +1,13 @@
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = [
+    "B008",  # FastAPI's Depends()/Query() in default args is the idiomatic pattern, not a bug
+    "E501",  # long lines are almost always narrative rationale/tradeoff strings surfaced verbatim to the UI, not code logic
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["F401"]

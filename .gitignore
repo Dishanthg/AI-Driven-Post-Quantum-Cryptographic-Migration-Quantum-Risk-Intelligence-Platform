@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Backend runtime artifacts
+backend/quantumshield.db
+backend/artifacts/
+backend/*.db
+backend/.env
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/node_modules/
+
+# Research outputs (generated, not hand-authored - regenerate via make targets).
+# Exception: a small set of figures embedded in README.md are tracked as
+# checked-in snapshots so the README renders standalone from a fresh clone
+# without requiring `make benchmark && make train && make research` first -
+# see the explicit !allowlist below. They are still fully regenerable and
+# get overwritten by `make research`; only the ones the README links to are
+# tracked, everything else in these directories remains generated-only.
+research/figures/*.png
+research/figures/*.pdf
+research/tables/*.csv
+research/tables/*.md
+research/tables/*.json
+!research/figures/.gitkeep
+!research/tables/.gitkeep
+!research/figures/keygen_classical_vs_pqc.png
+!research/figures/risk_model_comparison.png
+!research/tables/benchmark_comparison.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Env files
+.env
+.env.local

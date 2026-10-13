@@ -1,0 +1,48 @@
+# LAB / SYNTHETIC controlled config - see enterprise_lab/README.md
+application:
+  name: api-gateway
+  business_unit: platform
+  business_importance: critical
+  description: Edge TLS termination and internal request routing for all public-facing traffic.
+
+assets:
+  - hostname: gateway-edge-01
+    usage_type: tls_certificate
+    protocol: "TLS 1.2"
+    algorithm_id: RSA-3072
+    data_sensitivity: high
+    data_lifetime_years: 2
+    asset_criticality: critical
+    internet_exposure: true
+    migration_complexity: high
+    current_status: legacy
+    certificate:
+      subject: "CN=api.lab.quantumshield.internal"
+      issuer: "CN=QuantumShield Lab Root CA"
+      validity_years: 1
+
+  - hostname: gateway-edge-02
+    usage_type: tls_certificate
+    protocol: "TLS 1.3"
+    algorithm_id: ECDSA-P256
+    data_sensitivity: high
+    data_lifetime_years: 2
+    asset_criticality: critical
+    internet_exposure: true
+    migration_complexity: medium
+    current_status: legacy
+    certificate:
+      subject: "CN=api2.lab.quantumshield.internal"
+      issuer: "CN=QuantumShield Lab Intermediate CA"
+      validity_years: 1
+
+  - hostname: gateway-legacy-mtls
+    usage_type: key_exchange
+    protocol: "legacy internal mTLS (finite-field DH)"
+    algorithm_id: DH-2048
+    data_sensitivity: medium
+    data_lifetime_years: 4
+    asset_criticality: high
+    internet_exposure: false
+    migration_complexity: high
+    current_status: legacy

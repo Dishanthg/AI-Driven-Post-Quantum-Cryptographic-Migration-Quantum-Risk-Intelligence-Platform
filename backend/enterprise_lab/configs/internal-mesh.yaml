@@ -1,0 +1,189 @@
+# GENERATED FILE - SYNTHETIC LAB DATA. Do not hand-edit; regenerate via
+# `python -m enterprise_lab.generate_mesh`. See enterprise_lab/README.md.
+application:
+  name: internal-mesh
+  business_unit: platform
+  business_importance: medium
+  description: SYNTHETIC LAB DATA - 18 generated internal microservices (seed=42);
+    see enterprise_lab/generate_mesh.py for sampling weights.
+assets:
+- hostname: recommendation-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: ECDSA-P256
+  data_sensitivity: high
+  data_lifetime_years: 2
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: high
+  current_status: legacy
+- hostname: shipping-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: DH-2048
+  data_sensitivity: high
+  data_lifetime_years: 4
+  asset_criticality: medium
+  internet_exposure: false
+  migration_complexity: low
+  current_status: legacy
+- hostname: scheduler-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: ECDSA-P256
+  data_sensitivity: high
+  data_lifetime_years: 5
+  asset_criticality: critical
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: inventory-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: ECDH-P256
+  data_sensitivity: low
+  data_lifetime_years: 4
+  asset_criticality: low
+  internet_exposure: false
+  migration_complexity: low
+  current_status: legacy
+- hostname: reporting-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: RSA-2048
+  data_sensitivity: medium
+  data_lifetime_years: 1
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: high
+  current_status: legacy
+- hostname: feature-flag-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: DH-2048
+  data_sensitivity: medium
+  data_lifetime_years: 5
+  asset_criticality: medium
+  internet_exposure: false
+  migration_complexity: low
+  current_status: legacy
+- hostname: fraud-detection-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: ECDSA-P256
+  data_sensitivity: low
+  data_lifetime_years: 4
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: catalog-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: ECDH-P256
+  data_sensitivity: medium
+  data_lifetime_years: 4
+  asset_criticality: low
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: search-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: ECDH-P256
+  data_sensitivity: medium
+  data_lifetime_years: 1
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: analytics-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: ECDSA-P256
+  data_sensitivity: low
+  data_lifetime_years: 4
+  asset_criticality: medium
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: billing-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: DH-2048
+  data_sensitivity: low
+  data_lifetime_years: 5
+  asset_criticality: medium
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: session-cache-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: ECDH-P256
+  data_sensitivity: high
+  data_lifetime_years: 1
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: high
+  current_status: legacy
+- hostname: media-processing-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: ECDSA-P256
+  data_sensitivity: low
+  data_lifetime_years: 1
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: low
+  current_status: legacy
+- hostname: notification-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: ECDH-P256
+  data_sensitivity: low
+  data_lifetime_years: 1
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: config-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: ECDSA-P256
+  data_sensitivity: medium
+  data_lifetime_years: 4
+  asset_criticality: low
+  internet_exposure: false
+  migration_complexity: high
+  current_status: legacy
+- hostname: audit-svc-01
+  usage_type: key_exchange
+  protocol: internal mTLS
+  algorithm_id: ML-KEM-768
+  data_sensitivity: high
+  data_lifetime_years: 2
+  asset_criticality: medium
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: pqc_migrated
+- hostname: webhook-dispatch-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: RSA-2048
+  data_sensitivity: medium
+  data_lifetime_years: 4
+  asset_criticality: low
+  internet_exposure: false
+  migration_complexity: medium
+  current_status: legacy
+- hostname: pricing-svc-01
+  usage_type: tls_certificate
+  protocol: internal mTLS
+  algorithm_id: ECDSA-P256
+  data_sensitivity: medium
+  data_lifetime_years: 2
+  asset_criticality: high
+  internet_exposure: false
+  migration_complexity: high
+  current_status: legacy

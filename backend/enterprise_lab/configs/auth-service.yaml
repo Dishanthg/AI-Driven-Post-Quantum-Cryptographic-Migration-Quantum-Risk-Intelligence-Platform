@@ -1,0 +1,55 @@
+# LAB / SYNTHETIC controlled config - see enterprise_lab/README.md
+application:
+  name: auth-service
+  business_unit: identity
+  business_importance: critical
+  description: Handles login, session issuance and token signing for all downstream services.
+
+assets:
+  - hostname: auth-api-01
+    usage_type: tls_certificate
+    protocol: "TLS 1.2"
+    algorithm_id: ECDSA-P256
+    data_sensitivity: high
+    data_lifetime_years: 2
+    asset_criticality: critical
+    internet_exposure: true
+    migration_complexity: medium
+    current_status: legacy
+    certificate:
+      subject: "CN=auth.lab.quantumshield.internal"
+      issuer: "CN=QuantumShield Lab Intermediate CA"
+      validity_years: 1
+
+  - hostname: auth-token-signer
+    usage_type: signing
+    protocol: "JWT (RS256/ES256)"
+    algorithm_id: ECDSA-P256
+    data_sensitivity: high
+    data_lifetime_years: 1
+    asset_criticality: critical
+    internet_exposure: false
+    migration_complexity: medium
+    current_status: legacy
+
+  - hostname: auth-session-kx
+    usage_type: key_exchange
+    protocol: "TLS 1.2 ECDHE"
+    algorithm_id: ECDH-P256
+    data_sensitivity: high
+    data_lifetime_years: 1
+    asset_criticality: high
+    internet_exposure: false
+    migration_complexity: medium
+    current_status: legacy
+
+  - hostname: auth-audit-log-integrity
+    usage_type: data_integrity_hash
+    protocol: "internal audit trail"
+    algorithm_id: SHA-256
+    data_sensitivity: medium
+    data_lifetime_years: 7
+    asset_criticality: medium
+    internet_exposure: false
+    migration_complexity: low
+    current_status: legacy

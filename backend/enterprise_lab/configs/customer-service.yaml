@@ -1,0 +1,44 @@
+# LAB / SYNTHETIC controlled config - see enterprise_lab/README.md
+application:
+  name: customer-service
+  business_unit: support
+  business_importance: high
+  description: Customer profile storage and support-ticketing API.
+
+assets:
+  - hostname: customer-api-01
+    usage_type: tls_certificate
+    protocol: "TLS 1.3"
+    algorithm_id: ECDSA-P256
+    data_sensitivity: high
+    data_lifetime_years: 3
+    asset_criticality: high
+    internet_exposure: true
+    migration_complexity: medium
+    current_status: legacy
+    certificate:
+      subject: "CN=customers.lab.quantumshield.internal"
+      issuer: "CN=QuantumShield Lab Intermediate CA"
+      validity_years: 1
+
+  - hostname: customer-db-01
+    usage_type: data_at_rest
+    protocol: "disk-level encryption"
+    algorithm_id: AES-128-GCM
+    data_sensitivity: high
+    data_lifetime_years: 5
+    asset_criticality: high
+    internet_exposure: false
+    migration_complexity: low
+    current_status: legacy
+
+  - hostname: customer-notification-kx
+    usage_type: key_exchange
+    protocol: "internal TLS 1.3 ECDHE"
+    algorithm_id: ECDH-P256
+    data_sensitivity: medium
+    data_lifetime_years: 2
+    asset_criticality: medium
+    internet_exposure: false
+    migration_complexity: medium
+    current_status: legacy

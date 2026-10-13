@@ -1,0 +1,48 @@
+# LAB / SYNTHETIC controlled config - see enterprise_lab/README.md
+application:
+  name: internal-ca
+  business_unit: security
+  business_importance: critical
+  description: Internal PKI - root CA, intermediate CA and OCSP responder issuing certificates for every other lab service.
+
+assets:
+  - hostname: lab-root-ca
+    usage_type: signing
+    protocol: "X.509 certificate issuance (root)"
+    algorithm_id: RSA-3072
+    data_sensitivity: critical
+    data_lifetime_years: 20
+    asset_criticality: critical
+    internet_exposure: false
+    migration_complexity: high
+    current_status: legacy
+    certificate:
+      subject: "CN=QuantumShield Lab Root CA"
+      issuer: "CN=QuantumShield Lab Root CA"
+      validity_years: 20
+
+  - hostname: lab-intermediate-ca
+    usage_type: signing
+    protocol: "X.509 certificate issuance (intermediate)"
+    algorithm_id: ECDSA-P256
+    data_sensitivity: critical
+    data_lifetime_years: 10
+    asset_criticality: critical
+    internet_exposure: false
+    migration_complexity: high
+    current_status: legacy
+    certificate:
+      subject: "CN=QuantumShield Lab Intermediate CA"
+      issuer: "CN=QuantumShield Lab Root CA"
+      validity_years: 10
+
+  - hostname: lab-ocsp-responder
+    usage_type: signing
+    protocol: "OCSP response signing"
+    algorithm_id: ECDSA-P256
+    data_sensitivity: medium
+    data_lifetime_years: 3
+    asset_criticality: high
+    internet_exposure: true
+    migration_complexity: medium
+    current_status: legacy

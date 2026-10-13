@@ -1,0 +1,71 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: quantumshield
+      POSTGRES_PASSWORD: quantumshield_dev_only
+      POSTGRES_DB: quantumshield
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quantumshield"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      QS_DATABASE_URL: postgresql+psycopg://quantumshield:quantumshield_dev_only@postgres:5432/quantumshield
+      QS_ENVIRONMENT: docker
+      # No insecure fallback here on purpose: app/core/config.py now refuses to
+      # boot outside `development` with the default secret, so an operator who
+      # forgets to set this gets a clear compose-level error instead of a
+      # container that quietly signs JWTs with a secret published in this
+      # repo's own source. See .env.example for how to generate one.
+      QS_SECRET_KEY: ${QS_SECRET_KEY:?Set QS_SECRET_KEY (see .env.example) before running docker-compose up}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - backend_artifacts:/app/artifacts
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  grafana:
+    image: grafana/grafana:11.3.1
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+
+volumes:
+  postgres_data:
+  backend_artifacts:

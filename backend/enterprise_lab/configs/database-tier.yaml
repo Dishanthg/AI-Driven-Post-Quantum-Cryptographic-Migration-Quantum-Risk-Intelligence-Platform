@@ -1,0 +1,40 @@
+# LAB / SYNTHETIC controlled config - see enterprise_lab/README.md
+application:
+  name: database-tier
+  business_unit: platform
+  business_importance: high
+  description: Shared primary/replica database cluster and its long-retention backup encryption.
+
+assets:
+  - hostname: primary-db-01
+    usage_type: tls_certificate
+    protocol: "TLS 1.2 (client-server DB connections)"
+    algorithm_id: RSA-2048
+    data_sensitivity: high
+    data_lifetime_years: 5
+    asset_criticality: critical
+    internet_exposure: false
+    migration_complexity: high
+    current_status: legacy
+
+  - hostname: replica-db-01
+    usage_type: tls_certificate
+    protocol: "TLS 1.2 (client-server DB connections)"
+    algorithm_id: RSA-2048
+    data_sensitivity: high
+    data_lifetime_years: 5
+    asset_criticality: high
+    internet_exposure: false
+    migration_complexity: high
+    current_status: legacy
+
+  - hostname: backup-encryption-vault
+    usage_type: data_at_rest
+    protocol: "offline backup archive encryption"
+    algorithm_id: AES-256-GCM
+    data_sensitivity: critical
+    data_lifetime_years: 10
+    asset_criticality: critical
+    internet_exposure: false
+    migration_complexity: low
+    current_status: legacy

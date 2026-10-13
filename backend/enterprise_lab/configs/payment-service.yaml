@@ -1,0 +1,55 @@
+# LAB / SYNTHETIC controlled config - see enterprise_lab/README.md
+application:
+  name: payment-service
+  business_unit: commerce
+  business_importance: critical
+  description: Processes card-present and card-not-present transactions; long-lived compliance-driven data retention.
+
+assets:
+  - hostname: payment-api-01
+    usage_type: tls_certificate
+    protocol: "TLS 1.2"
+    algorithm_id: RSA-2048
+    data_sensitivity: critical
+    data_lifetime_years: 7
+    asset_criticality: critical
+    internet_exposure: true
+    migration_complexity: high
+    current_status: legacy
+    certificate:
+      subject: "CN=payments.lab.quantumshield.internal"
+      issuer: "CN=QuantumShield Lab Intermediate CA"
+      validity_years: 1
+
+  - hostname: payment-db-01
+    usage_type: data_at_rest
+    protocol: "disk-level encryption"
+    algorithm_id: AES-256-GCM
+    data_sensitivity: critical
+    data_lifetime_years: 7
+    asset_criticality: critical
+    internet_exposure: false
+    migration_complexity: low
+    current_status: legacy
+
+  - hostname: payment-txn-signer
+    usage_type: signing
+    protocol: "transaction receipt signing"
+    algorithm_id: RSA-2048
+    data_sensitivity: high
+    data_lifetime_years: 7
+    asset_criticality: critical
+    internet_exposure: false
+    migration_complexity: high
+    current_status: legacy
+
+  - hostname: payment-ledger-hash
+    usage_type: data_integrity_hash
+    protocol: "internal ledger chaining"
+    algorithm_id: SHA-256
+    data_sensitivity: high
+    data_lifetime_years: 10
+    asset_criticality: high
+    internet_exposure: false
+    migration_complexity: low
+    current_status: legacy

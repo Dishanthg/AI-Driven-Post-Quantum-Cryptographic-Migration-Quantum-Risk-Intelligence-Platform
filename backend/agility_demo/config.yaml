@@ -1,0 +1,3 @@
+# The ONLY thing that changes when the "Secure API" sample app switches
+# cryptographic algorithm. See secure_api.py and README.md.
+provider_key: ecdsa_p256
